@@ -3,15 +3,15 @@
 Thera Bank Customer Conversion
 Converting current depositors to depositors/borrowers
 # Business Understanding
-<pre>Context: who is Thera Bank? 
+Context: who is Thera Bank? 
 Problem: too many deposit (liability) customers, not enough loaners (asset) customers
 Creative solution: target current customers as opposed to attracting new ones
-<pre/>
+
 
 # Business Goal 
-<pre>
+
 Determine which of Thera Bank’s current deposit-only customers have a high likelihood of taking out a loan, and target them for marketing loan products. 
-<pre/>
+
 
 # Data Understanding
 Here’s a screenshot of the first few rows of our dataset, which we got it from Kaggle. The dataset has 5000 instances and 14 columns. Each instance represents a current depositor in Thera Bank. And there are no missing values in this dataset. The blue box includes our 12 attributes, the red box includes our target variable which is whether customers accept personal loan offered in the last marketing campaign, with 0 meaning no, and 1 meaning yes. Since we have a specific target which is to identify who will become our borrowers, this is a classification problem.
@@ -28,6 +28,14 @@ The last step before modeling is that we want to see whether multicollinearity e
 
 # Modeling
 This is our Modeling process before resampling. Firstly, we split our data into training and test. Then we build 3 models which are DT,KNN and LR. As for KNN, we first standardized x. Then we use Grid Search cross validation to find the best parameters for all 3 models. Take DT for example, the best criterion is Gini and the max depth is 20. In KNN, the k neighbors is 1 and the weights are uniform. The penalty is L1 and balance between the complexity and fit is 1 in LR. We then fit out model with the best hyper parameters to test the generalized performances.
+
+# Evaluation
+ Discuss how the result of the data mining is/should be evaluated. 
+Two and three
+Basd on stands out, distract your attention, mainly closer look at the results of decision trees.
+-Accuracy: decision tree
+-Errors: Decision tree just makes a few mistakes here. And we are more focused on the mistake in the left lower corner. This will make us miss out opportunities to earn loan interest. This is the lowest among three models. However, we consider the cost of the mistake in the right upper corner to be low. Just imagine the cost of sending an email to customers even if they ignore. To truly weigh the importance of these two mistakes,  we need real-world cost-benefit information. I will mention some benefits we will have in the next slide.
+-ROC: ROC is a good measure for unbalanced data. Logistic’s auc is slightly higher than decision tree. But the optimal point, which is closest to the northwest corner, is on decision tree. Carefully looking at the green curve here for logistic, it has higher true positive rates but at the cost of increasing false positive rate dramatically. Again, it relies on cost-benefit matrix. So we just stick to the best result we got from decision trees. 
 
 
  
